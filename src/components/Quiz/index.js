@@ -11,19 +11,14 @@ const Quiz = () => {
   const [result, SetResult] = useState(false);
   const [selectedAnswers, setSelectedAnswers] = useState([]);
   const [textAnswer, setTextAnswer] = useState("");
-  const [animationState, setAnimationState] = useState('question-enter');
+  const [animationState, setAnimationState] = useState("question-enter");
   const [previousIndex, setPreviousIndex] = useState(null);
 
-  const OptionRefs = [
-    useRef(null),
-    useRef(null),
-    useRef(null),
-    useRef(null)
-  ];
+  const OptionRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
 
   useEffect(() => {
-    setAnimationState('question-enter');
-    const timer = setTimeout(() => setAnimationState('question-visible'), 10);
+    setAnimationState("question-enter");
+    const timer = setTimeout(() => setAnimationState("question-visible"), 10);
     return () => clearTimeout(timer);
   }, [index]);
 
@@ -31,7 +26,7 @@ const Quiz = () => {
     if (!lock) {
       let newSelectedAnswers = [...selectedAnswers];
       if (newSelectedAnswers.includes(ans)) {
-        newSelectedAnswers = newSelectedAnswers.filter(item => item !== ans);
+        newSelectedAnswers = newSelectedAnswers.filter((item) => item !== ans);
         e.target.classList.remove("selected");
       } else {
         newSelectedAnswers.push(ans);
@@ -48,43 +43,59 @@ const Quiz = () => {
   const handleNextQuestion = () => {
     if (!lock) {
       let isCorrect = false;
-      if (question.type === 'multiple-choice') {
-        const correctAnswers = Array.isArray(question.ans) ? question.ans : [question.ans];
-        isCorrect = correctAnswers.sort().join() === selectedAnswers.sort().join();
+
+      if (question.type === "multiple-choice") {
+        const correctAnswers = Array.isArray(question.ans)
+          ? question.ans
+          : [question.ans];
+        isCorrect =
+          correctAnswers.sort().join() === selectedAnswers.sort().join();
+
         if (isCorrect) {
-          correctAnswers.forEach(ans => {
+          correctAnswers.forEach((ans) => {
             const ref = OptionRefs[ans - 1];
             if (ref.current) {
               ref.current.classList.add("correct");
             }
           });
-          if (index < quizData.length - 1) { 
-            setScore(prev => prev + 1);
+          if (index < quizData.length - 1) {
+            setScore((prev) => prev + 1);
           }
         } else {
-          selectedAnswers.forEach(ans => {
+          selectedAnswers.forEach((ans) => {
             const ref = OptionRefs[ans - 1];
             if (ref.current) {
               ref.current.classList.add("incorrect");
             }
           });
-          correctAnswers.forEach(ans => {
+          correctAnswers.forEach((ans) => {
             const ref = OptionRefs[ans - 1];
             if (ref.current) {
               ref.current.classList.add("correct");
             }
           });
         }
-      } else if (question.type === 'text') {
+      } else if (question.type === "text") {
         if (textAnswer.trim() !== "") {
-          isCorrect = true; 
+          isCorrect = true;
         }
       }
 
       setLock(false);
-      setAnimationState('question-exit');
+      setAnimationState("question-exit");
       setTimeout(() => {
-        const nextQuestionIndex = index + 1;
+        let nextQuestionIndex = index + 1;
+
+        if (question.question === "Do you know React JS?") {
+          if (selectedAnswers[0] === 1) {
+            nextQuestionIndex = quizData.findIndex(
+              (q) => q.question === "What is a Hook?"
+            );
+          } else {
+            nextQuestionIndex =
+              quizData.findIndex((q) => q.question === "What is a Hook?") + 1;
+          }
+        }
 
         if (nextQuestionIndex >= quizData.length) {
           SetResult(true);
@@ -95,16 +106,19 @@ const Quiz = () => {
         setIndex(nextQuestionIndex);
         setQuestion(quizData[nextQuestionIndex]);
         setSelectedAnswers([]);
-        setTextAnswer(""); 
-        OptionRefs.forEach(ref => {
+        setTextAnswer("");
+        OptionRefs.forEach((ref) => {
           if (ref.current) {
             ref.current.classList.remove("incorrect");
             ref.current.classList.remove("correct");
             ref.current.classList.remove("selected");
           }
         });
-        setAnimationState('question-enter');
-        const timer = setTimeout(() => setAnimationState('question-visible'), 10);
+        setAnimationState("question-enter");
+        const timer = setTimeout(
+          () => setAnimationState("question-visible"),
+          10
+        );
         return () => clearTimeout(timer);
       }, 1000);
     }
@@ -116,8 +130,8 @@ const Quiz = () => {
       setQuestion(quizData[previousIndex]);
       setPreviousIndex(null);
       setSelectedAnswers([]);
-      setTextAnswer(""); 
-      OptionRefs.forEach(ref => {
+      setTextAnswer("");
+      OptionRefs.forEach((ref) => {
         if (ref.current) {
           ref.current.classList.remove("incorrect");
           ref.current.classList.remove("correct");
@@ -134,8 +148,8 @@ const Quiz = () => {
     setLock(false);
     SetResult(false);
     setSelectedAnswers([]);
-    setTextAnswer(""); 
-    OptionRefs.forEach(ref => {
+    setTextAnswer("");
+    OptionRefs.forEach((ref) => {
       if (ref.current) {
         ref.current.classList.remove("incorrect");
         ref.current.classList.remove("correct");
@@ -161,7 +175,7 @@ const Quiz = () => {
             <h2>
               {index + 1}. {question.question}
             </h2>
-            {question.type === 'multiple-choice' ? (
+            {question.type === "multiple-choice" ? (
               <>
                 <ul>
                   {question.options.map((option, idx) => (
@@ -175,7 +189,7 @@ const Quiz = () => {
                   ))}
                 </ul>
               </>
-            ) : question.type === 'text' ? (
+            ) : question.type === "text" ? (
               <input
                 type="text"
                 value={textAnswer}
@@ -185,7 +199,9 @@ const Quiz = () => {
               />
             ) : null}
             <div className="navigation-buttons">
-              {index > 0 && <button onClick={handlePreviousQuestion}>Previous</button>}
+              {index > 0 && (
+                <button onClick={handlePreviousQuestion}>Previous</button>
+              )}
               <button onClick={handleNextQuestion}>Next</button>
             </div>
             <div className="index">
@@ -200,9 +216,3 @@ const Quiz = () => {
 };
 
 export default Quiz;
-
-
-
-
-
-
