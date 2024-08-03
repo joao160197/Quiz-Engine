@@ -165,7 +165,7 @@ const Quiz = () => {
       {result ? (
         <>
           <h2>
-            You Scored {score} out of {quizData.length}
+            You Scored {score} points !!!!
           </h2>
           <button onClick={reset}>Reset</button>
         </>
