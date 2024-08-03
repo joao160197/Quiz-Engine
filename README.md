@@ -1,4 +1,4 @@
-Quiz Engine
+Quiz Engine -
 This project is a Quiz Engine developed with React and CSS/SCSS. It allows users to answer a series of questions based on a JSON structure, supporting multiple-choice and text questions. The system includes conditional navigation between questions, a progress bar, and smooth animations for an interactive and responsive experience.
 
 Features:
