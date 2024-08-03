@@ -1,0 +1,156 @@
+
+.container {
+  width: 90%;
+  max-width: 640px;
+  margin: auto;
+  margin-top: 100px;
+  background: white;
+  color: #262626;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  border-radius: 10px;
+  padding: 20px; 
+  border: solid 1px #D3D3D3;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+.input{
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+
+.separator {
+  border: none;
+  border-top: solid 1px #D3D3D3;
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+
+.container h2 {
+  font-size: 1.5rem; 
+  font-weight: 500;
+}
+
+
+.container ul {
+  padding: 0;
+  list-style: none;
+}
+
+
+.container ul li {
+  display: flex;
+  align-items: center;
+  height: auto; 
+  padding: 10px 15px;
+  border: 1px solid #686868;
+  border-radius: 10px;
+  margin-bottom: 10px; 
+  font-size: 1rem; 
+  cursor: pointer;
+  transition: background-color 0.5s ease-in-out, border-color 0.5s ease-in-out;
+}
+
+
+.container button {
+  margin: auto;
+  width: 80%; 
+  max-width: 200px; 
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  background-color: #5D3FD3;
+  font-size: 1rem; 
+  color: white;
+  cursor: pointer;
+}
+
+
+.container .index {
+  margin: auto;
+  font-size: 1rem; 
+}
+
+/* Estado correto */
+.container .correct {
+  background: #7CFC00;
+  border-color: #90EE90;
+}
+
+/* Estado incorreto */
+.container .incorrect {
+  background: #EE4B2B;
+  border-color: #E97451;
+}
+
+
+.question-container {
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+
+.question-enter {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+
+.question-exit {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+
+.question-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+.progress-bar {
+  width: 100%;
+  background-color: #e0e0e0;
+  border-radius: 5px;
+  margin: 20px 0;
+  overflow: hidden;
+}
+
+.progress {
+  height: 20px;
+  background-color: #7F00FF;
+  width: 0;
+  transition: width 0.5s ease-in-out;
+}
+
+
+@media (max-width: 600px) {
+  .container {
+      margin-top: 50px;
+      padding: 20px 15px; 
+  }
+
+  .container h2 {
+      font-size: 1.2rem; 
+  }
+
+  .container ul li {
+      font-size: 0.9rem; 
+  }
+
+  .container button {
+      width: 100%; 
+  }
+
+  .container .index {
+      font-size: 0.9rem; 
+  }
+}

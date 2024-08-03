@@ -1,0 +1,58 @@
+[
+ {
+    "question": "What is your Name?",
+    "type": "text",
+    "nextQuestion": 1
+  },
+  {
+    "question": "Which device is required for the Internet connection?",
+    "options": ["Modem", "Router", "LAN Cable", "Pen Drive"],
+    "ans": 1,
+    "type": "multiple-choice",
+    "nextQuestion": 2
+  },
+  {
+    "question": "Junk e-mail is also called?",
+    "options": ["Spam", "Fake", "Archived", "Bin"],
+    "ans": 1,
+    "type": "multiple-choice",
+    "nextQuestion": 3
+  },
+  {
+    "question": "A computer cannot BOOT if it does not have the?",
+    "options": ["Application Software", "Internet", "Operating System", "Mouse"],
+    "ans": 3,
+    "type": "multiple-choice",
+    "nextQuestion": 4
+  },
+  {
+    "question": "First page of Website is termed as?",
+    "options": ["Index Page", "Homepage", "Sitemap", "Pen Drive"],
+    "ans": 2,
+    "type": "multiple-choice",
+    "nextQuestion": 5
+  },
+  {
+    "question": "Which of the following are programming languages?",
+    "options": ["HTML", "Python", "CSS", "JavaScript"],
+    "ans": [2, 4],
+    "type": "multiple-choice",
+    "nextQuestion": null
+  },
+  {
+    "question": "Do you know React JS?",
+    "type": "multiple-choice",
+    "options": ["yes", "no"],
+    "ans": 1, 
+    "nextQuestion": 1
+  },
+  {
+    "question": "What is a Hook?",
+    "type": "multiple-choice",
+    "options": ["Function", "Object", "Class", "Method"],
+    "ans": 1, 
+    "nextQuestion": null
+  }
+  
+  
+]
